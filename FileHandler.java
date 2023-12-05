@@ -21,6 +21,14 @@ public class FileHandler {
     public static void appendToFile(String path, String text) {
         try(FileWriter user_details = new FileWriter(path, true)) {
             user_details.write(System.lineSeparator() + text);
+        } catch(IOException e) {    
+            e.printStackTrace();
+        }
+    }
+
+    public static void resetBoard(String path, String text) {
+        try (BufferedWriter header = new BufferedWriter(new FileWriter(path))) {
+            header.write(text);
         } catch(IOException e) {
             e.printStackTrace();
         }
