@@ -2,7 +2,7 @@ import java.util.Scanner;
 import java.util.Random;
 
 abstract class Quiz {
-    protected int points;
+    protected int points = 0;
     protected int hp;
     protected int MAX = 10;
     protected int num_of_questions = 0;
@@ -68,7 +68,7 @@ class ModerateQuiz extends Quiz {
             boolean exists = false;
 
             for(int x = 0; x < i; x++) {
-                if(index == this.passed[i]) {
+                if(index == this.passed[x]) {
                     exists = true;
                     break;
                 }
@@ -93,25 +93,30 @@ class ModerateQuiz extends Quiz {
             System.out.println("lives: " + this.hp);
             System.out.println(questions[index]);
             while(true) {
-                System.out.println("ans: ");
+                System.out.print("ans: ");
                 ans = sc.nextLine();
                 if(!ans.equalsIgnoreCase(answer[index])) {
+                    this.damage();
                     System.out.println("wrong");
                     System.out.println("lives: " + this.hp);
-                    System.out.println("clue: " + answer[index].charAt(clue));
                     if(hp == 0) {
                         System.out.println("game over");
+                        System.out.println("total points: " + this.getPoints());
                         return;
                     }
-                    this.damage();
+                    System.out.println("clue: " + answer[index].charAt(clue));
                     clue++;
                 } else {
                     System.out.println("correct");
+                    System.out.println();
+                    this.addPoints();
                     break;
                 }
             }
             items++;
         }
+
+        System.out.println("total points: " + this.getPoints());
     }
 
     @Override

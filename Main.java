@@ -1,14 +1,21 @@
-import java.io.IOException;
-import java.io.File;
-import java.io.FileWriter;
-import java.io.BufferedWriter;
 import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        // int choice;
+        int choice;
+        int total;
         String user, file_name = "scoreboard.txt", file_header = "test";
+        ThreadSleeper ts = new ThreadSleeper();
+        
+        ts.initMenu();
+        
+        System.out.print("Select difficulty: ");
+        choice = sc.nextInt();
+        sc.nextLine();
+        System.out.print("What's your name? ");
+        user = sc.nextLine();
+        System.out.println();
         
         // FileHandler.resetBoard(file_name, file_header);
         // FileHandler.initScoreboard(file_name, file_header);
