@@ -14,7 +14,6 @@ abstract class Quiz {
         this.points = 0;
         this.hp = 3;
         this.questions = new String[20];
-        this.answer = new String[20];
         this.passed = new int[MAX];
     }
 
@@ -23,7 +22,7 @@ abstract class Quiz {
     }
 
     public void damage() {
-        this.hp -= 1;
+        this.hp--;
     }
 
     abstract void startQuiz();
@@ -44,71 +43,74 @@ class EasyQuiz extends Quiz{
 }
 
 class ModerateQuiz extends Quiz {
-    public boolean checkRepeat(int index) {
-        for(int i = 0; i < MAX; i++) {
-            if(index == passed[i]) return true;
-        }
-
-        return false;
-    }
-
     @Override
     public void startQuiz() {
         Scanner sc = new Scanner(System.in);
         Random rand = new Random();
-        int index, mark = 0;
+        this.passed = new int[5];
+        this.answer = new String[5];
+        int i = 0, items = 0;
+        String ans;
 
-        questions[0] = "Java supports multiple inheritance through classes [true/false]";
-        answer[0] = "true";
-        questions[1] = "What is the primary role of a setter method in Java";
-        answer[1] = "set";
-        questions[2] = "Which keyword is used to refer to the current instance of an object in Java?";
-        answer[2] = "this";
-        questions[3] = "What is the purpose of the 'new' keyword in Java?";
-        answer[3] = "instantiate";
-        questions[4] = "Which type of error is detected during runtime in Java?";
-        answer[4] = "runtime";
-        questions[5] = "Which access modifier allows a variable or method to be accessible only within its own class?";
-        answer[5] = "private";
-        questions[6] = "Local variables are accessible only within the method or block where they are declared";
-        answer[6] = "true";
-        questions[7] = "What is the keyword used to define a method that does not return any value in Java?";
-        answer[7] = "void";
-        questions[8] = "In Java, what term is used for variables declared outside any method or block and are accessible throughout the class?";
-        answer[8] = "global";
-        questions[9] = "What type of method in Java can call itself during its execution?";
-        answer[9] = "recursive";
-        questions[10] = "Access modifiers control the visibility of variables and methods in Java";
-        answer[10] = "true";
-        questions[11] = "What do yo ucall the values passed to a method when it is called?";
-        answer[11] = "parameters";
-        questions[12] = "Which keyword is used to explicitly return a value from a method in Java?";
-        answer[12] = "return";
-        questions[13] = "The break statement can be used to exit a loop based on a specific condition";
-        answer[13] = "true";
-        questions[14] = "When using a labeled break statement in nested loops, what does the label represent?";
-        answer[14] = "the loop to terminate";
-        questions[15] = "The continue statement can be used to skip the rest of the code inside a loop and move to the next iteration";
-        answer[15] = "true";
-        questions[16] = "What does the break statement do when used inside a switch statement in Java?";
-        answer[16] = "exit the switch case";
-        questions[17] = "Actual parameters are also known as";
-        answer[17] = "arguments";
-        questions[18] = "Formal parameters are placeholders defined in the method";
-        answer[18] = "true";
-        questions[19] = "A constructor in Java is a special method that is used to initialize objects";
-        answer[19] = "true";
-        
-        int i = 0;
-        while(mark < MAX) {
-            // check later for segmentation fault
-            index = rand.nextInt(20) + 1;
-            while(this.checkRepeat(index)) index = rand.nextInt(20) + 1;
+        this.questions[0] = "Java supports multiple inheritance through classes [true/false]";
+        this.answer[0] = "true";
+        this.questions[1] = "What is the primary role of a setter method in Java";
+        this.answer[1] = "set";
+        this.questions[2] = "Which keyword is used to refer to the current instance of an object in Java?";
+        this.answer[2] = "this";
+        this.questions[3] = "What is the purpose of the 'new' keyword in Java?";
+        this.answer[3] = "instantiate";
+        this.questions[4] = "Which type of error is detected during runtime in Java?";
+        this.answer[4] = "runtime";   
+
+        while(i < 5) {
+            int index = rand.nextInt(5) + 1;
+            boolean exists = false;
+
+            for(int x = 0; x < i; x++) {
+                if(index == this.passed[i]) {
+                    exists = true;
+                    break;
+                }
+            }
+
+            if(!exists) {
+                this.passed[i] = index;
+                i++;
+            }
+        }
+
+        // debugging block
+        System.out.println(i);
+
+        // test phase
+        System.out.println("test header");
+        System.out.println();
+
+        while(items < 5) {
+            int clue = 0;
+            int index = this.passed[items] - 1;
+            System.out.println("lives: " + this.hp);
             System.out.println(questions[index]);
-            sc.nextLine();
-            String reply = sc.nextLine();
-            if(reply != answer[index]) this.damage();
-            passed[i] = index;
+            while(true) {
+                System.out.println("ans: ");
+                ans = sc.nextLine();
+                if(!ans.equalsIgnoreCase(answer[index])) {
+                    System.out.println("wrong");
+                    System.out.println("lives: " + this.hp);
+                    System.out.println("clue: " + answer[index].charAt(clue));
+                    if(hp == 0) {
+                        System.out.println("game over");
+                        return;
+                    }
+                    this.damage();
+                    clue++;
+                } else {
+                    System.out.println("correct");
+                    break;
+                }
+            }
+            items++;
         }
     }
 
