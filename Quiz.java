@@ -277,8 +277,8 @@ class HardQuiz extends Quiz {
         this.answer[0] = "Final";
         this.questions[1] = "Which Java keyword is used to implement multiple inheritance in interfaces?";
         this.answer[1] = "Default";
-        this.questions[12] = "What is the access modifier for a default (package-private) member in Java?";
-        this.answer[12] = "Package Private";
+        this.questions[2] = "What is the access modifier for a default (package-private) member in Java?";
+        this.answer[2] = "Package Private";
         this.questions[3] = "Which method is called when an object is garbage collected in Java?";
         this.answer[3] = "Finalize";
         this.questions[4] = "What is the purpose of the transient keyword in Java?";
