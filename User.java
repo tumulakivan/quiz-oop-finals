@@ -1,3 +1,5 @@
+package Finals;
+
 public class User {
     private int score;
     private String name;
@@ -16,6 +18,6 @@ public class User {
     }
 
     public void setScore(int score) {
-        this.score += score;
+        this.score = score;
     }
 }

@@ -1,11 +1,12 @@
+package Finals;
+
 import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        int choice;
-        int total;
-        String user, file_name = "scoreboard.txt", file_header = "test";
+        int choice, total, highscore;
+        String user, file_name = "scoreboard.txt", file_header = "Quiz Leaderboard";
         ThreadSleeper ts = new ThreadSleeper();
         
         ts.initMenu();
@@ -13,26 +14,43 @@ public class Main {
         System.out.print("Select difficulty: ");
         choice = sc.nextInt();
         sc.nextLine();
-        System.out.print("What's your name? ");
+        System.out.print("Enter your name: ");
         user = sc.nextLine();
         System.out.println();
         
         // FileHandler.resetBoard(file_name, file_header);
         // FileHandler.initScoreboard(file_name, file_header);
 
-        /* 
-        System.out.print("name: ");
-        user = sc.nextLine();
-        User player = new User(user);
-        String toAppend = player.getName() + " - " + player.getScore();
-        FileHandler.appendToFile(file_name, toAppend);
-        */
+        switch(choice) {
+            case 1: 
+                EasyQuiz easy = new EasyQuiz();
+                easy.startQuiz();
+                total = easy.getPoints();
+                break;
+            case 2:
+                ModerateQuiz mod = new ModerateQuiz();
+                mod.startQuiz();
+                mod.getPoints();
+                break;
+            case 3:
+                HardQuiz hard= new HardQuiz();
+                hard.startQuiz();
+                hard.getPoints();
+                break;
+            default:
+                System.out.println("Invalid"); // implement error handling
+                break;
+        }
 
-        ModerateQuiz mod = new ModerateQuiz();
-        mod.startQuiz();
+        highscore = FileHandler.getHighscore(file_name);
+        User player = new User(user);
+        total = player.getScore();
+        player.setScore(total);
+        if(player.getScore() > highscore) {
+            highscore = player.getScore();
+            FileHandler.updateHighscore(file_name, highscore, player);
+        }
+        String toAppend = player.getName() + " - " + total;
+        FileHandler.appendToFile(file_name, toAppend);
     }
 }
-
-/*
-    * Your program must be able to enter the player name, the player can then select easy, moderate or difficult mode. Create 20 questions for each mode relevant to java, the player only needs to answer 10 questions. The player has 3 lives, for each incorrect answer the player life will be deducted by 1, if life is 0, it means game over. If the player completed the calculate the total score. Apply the OOP concepts and validation (exceptions). Display the top scorers and save and retrieved it through a text file.
-    */
