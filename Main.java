@@ -5,8 +5,8 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        int choice, total, highscore;
-        String user, file_name = "scoreboard.txt", file_header = "Quiz Leaderboard";
+        int choice, total = 0, highscore;
+        String user, file_name = "D:/Files/Code/Java/Finals/scoreboard.txt", file_header = "Quiz Leaderboard";
         ThreadSleeper ts = new ThreadSleeper();
         
         ts.initMenu();
@@ -30,27 +30,21 @@ public class Main {
             case 2:
                 ModerateQuiz mod = new ModerateQuiz();
                 mod.startQuiz();
-                mod.getPoints();
+                total = mod.getPoints();
                 break;
             case 3:
                 HardQuiz hard= new HardQuiz();
                 hard.startQuiz();
-                hard.getPoints();
+                total = hard.getPoints();
                 break;
             default:
                 System.out.println("Invalid"); // implement error handling
                 break;
         }
 
-        highscore = FileHandler.getHighscore(file_name);
         User player = new User(user);
-        total = player.getScore();
         player.setScore(total);
-        if(player.getScore() > highscore) {
-            highscore = player.getScore();
-            FileHandler.updateHighscore(file_name, highscore, player);
-        }
-        String toAppend = player.getName() + " - " + total;
+        String toAppend = player.getName() + " - " + Integer.toString(total);
         FileHandler.appendToFile(file_name, toAppend);
     }
 }
