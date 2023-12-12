@@ -4,7 +4,7 @@ public class ThreadSleeper {
     private long ms;
 
     public ThreadSleeper() {
-        this.ms = 0;
+        this.ms = 10;
     }
 
     public void initMenu() {
@@ -20,7 +20,7 @@ public class ThreadSleeper {
             String text = top + intro + prompt + select1 + select2 + select3 + select4;
             for(char c : text.toCharArray()) {
                 System.out.print(c);
-                if(c == '\n') Thread.sleep(0);
+                if(c == '\n') Thread.sleep(100);
                 else Thread.sleep(this.ms);
             }
         } catch(InterruptedException e) {
