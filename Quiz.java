@@ -108,23 +108,23 @@ class EasyQuiz extends Quiz{
 
         while(items < 10) {
             int index = this.passed[items];
-            System.out.println("lives: " + this.hp);    
+            System.out.println("Lives: " + this.hp);    
             System.out.println(items + 1 + ".) " + questions[index]);
             while(true) {
-                System.out.print("ans: ");
+                System.out.print("Answer: ");
                 ans = sc.nextLine();
                 if(!ans.equalsIgnoreCase(answer[index])) {
                     this.damage();
                     this.deductPoints();
-                    System.out.println("wrong");
-                    System.out.println("lives: " + this.hp);
-                    if(hp == 0) {
-                        System.out.println("game over");
-                        System.out.println("total points: " + this.getPoints());
+                    System.out.println("Incorrect.");
+                    System.out.println("Lives: " + this.hp);
+                    if(hp < 0) {
+                        System.out.println("Game Over");
+                        System.out.println("Total points: " + this.getPoints());
                         return;
                     }
                 } else {
-                    System.out.println("correct");
+                    System.out.println("Correct!");
                     System.out.println();
                     this.addPoints();
                     break;
@@ -133,7 +133,7 @@ class EasyQuiz extends Quiz{
             items++;
         }
 
-        System.out.println("total points: " + this.getPoints());
+        System.out.println("Total points: " + this.getPoints());
     }
 
     public void deductPoints() {
@@ -223,24 +223,25 @@ class ModerateQuiz extends Quiz {
 
         while(items < 10) {
             int index = this.passed[items];
-            System.out.println("lives: " + this.hp);    
+            System.out.println("Lives: " + this.hp);    
             System.out.println(items + 1 + ".) " + questions[index]);
             while(true) {
-                System.out.print("ans: ");
+                System.out.print("Answer: ");
                 ans = sc.nextLine();
                 if(!ans.equalsIgnoreCase(answer[index])) {
                     this.damage();
                     this.deductPoints();
-                    System.out.println("wrong");
-                    System.out.println("lives: " + this.hp);
-                    if(hp == 0) {
+                    System.out.println("Incorrect.");
+                    System.out.println("Lives: " + this.hp);
+                    if(hp < 0) {
                         System.out.println();
-                        System.out.println("game over");
-                        System.out.println("total points: " + this.getPoints());
+                        System.out.println("Correct Answer: " + answer[index]);
+                        System.out.println("Game Over");
+                        System.out.println("Total points: " + this.getPoints());
                         return;
                     }
                 } else {
-                    System.out.println("correct");
+                    System.out.println("Correct!");
                     System.out.println();
                     this.addPoints();
                     break;
@@ -249,7 +250,7 @@ class ModerateQuiz extends Quiz {
             items++;
         }
 
-        System.out.println("total points: " + this.getPoints());
+        System.out.println("Total points: " + this.getPoints());
     }
 
     public void deductPoints() {
@@ -340,26 +341,27 @@ class HardQuiz extends Quiz {
         while(items < 10) {
             int clue = 0;
             int index = this.passed[items];
-            System.out.println("lives: " + this.hp);    
+            System.out.println("Lives: " + this.hp);    
             System.out.println(items + 1 + ".) " + questions[index]);
             while(true) {
-                System.out.print("ans: ");
+                System.out.print("Answer: ");
                 ans = sc.nextLine();
                 if(!ans.equalsIgnoreCase(answer[index])) {
                     this.damage();
                     this.deductPoints();
-                    System.out.println("wrong");
-                    System.out.println("lives: " + this.hp);
-                    if(hp == 0) {
+                    System.out.println("Incorrect.");
+                    System.out.println("Lives: " + this.hp);
+                    if(hp < 0) {
                         System.out.println();
-                        System.out.println("game over");
-                        System.out.println("total points: " + this.getPoints());
+                        System.out.println("Correct Answer: " + answer[index]);
+                        System.out.println("Game Over");
+                        System.out.println("Total points: " + this.getPoints());
                         return;
                     }
-                    System.out.println("clue: " + answer[index].charAt(clue));
+                    System.out.println("Clue: " + answer[index].charAt(clue));
                     clue++;
                 } else {
-                    System.out.println("correct");
+                    System.out.println("Correct!");
                     System.out.println();
                     this.addPoints();
                     break;
@@ -368,7 +370,7 @@ class HardQuiz extends Quiz {
             items++;
         }
 
-        System.out.println("total points: " + this.getPoints());
+        System.out.println("Total points: " + this.getPoints());
     }
 
     public void deductPoints() {

@@ -37,6 +37,9 @@ public class Main {
                 hard.startQuiz();
                 total = hard.getPoints();
                 break;
+            case 4:
+                total = 0;
+                break;
             default:
                 System.out.println("Invalid"); // implement error handling
                 break;
