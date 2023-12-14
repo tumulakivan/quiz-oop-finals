@@ -3,8 +3,8 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        int choice, total = 0, highscore;
-        String user, file_name = "D:/Files/Code/Java/Finals/scoreboard.txt", file_header = "Quiz Leaderboard";
+        int choice, total = 0;
+        String user, file_name = "D:/Files/Code/Java/Finals/scoreboard.txt";
         ThreadSleeper ts = new ThreadSleeper();
         
         ts.initMenu();
@@ -15,9 +15,6 @@ public class Main {
         System.out.print("Enter your name: ");
         user = sc.nextLine();
         System.out.println();
-        
-        // FileHandler.resetBoard(file_name, file_header);
-        // FileHandler.initScoreboard(file_name, file_header);
 
         switch(choice) {
             case 1: 
