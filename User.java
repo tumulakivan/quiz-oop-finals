@@ -1,5 +1,3 @@
-package Finals;
-
 public class User {
     private int score;
     private String name;

@@ -1,5 +1,3 @@
-package Finals;
-
 import java.io.*;
 
 public class FileHandler {

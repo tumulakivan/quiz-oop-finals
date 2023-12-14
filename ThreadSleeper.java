@@ -1,5 +1,3 @@
-package Finals;
-
 public class ThreadSleeper {
     private long ms;
 
@@ -14,7 +12,7 @@ public class ThreadSleeper {
         String select1 = "1 - EASY\n";
         String select2 = "2 - MODERATE\n";
         String select3 = "3 - HARD\n";
-        String select4 = "4 - GO HOME\n";
+        String select4 = "4 - EXIT\n";
 
         try {
             String text = top + intro + prompt + select1 + select2 + select3 + select4;

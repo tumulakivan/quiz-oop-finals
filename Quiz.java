@@ -1,5 +1,3 @@
-package Finals;
-
 import java.util.Scanner;
 import java.util.Random;
 
